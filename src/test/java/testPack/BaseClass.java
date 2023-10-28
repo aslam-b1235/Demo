@@ -15,6 +15,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
+import testUtility.DempPropertiesClass;
 import testUtility.Screenshot;
 import testUtility.StaticBrowser;
 
@@ -27,9 +28,9 @@ public class BaseClass
 	@Parameters({"browser"})
 	
 	@BeforeTest
-	public void setUp(String browser)
+	public void setUp(String browser) throws IOException
 	{
-		driver = StaticBrowser.launchBrowser(browser, "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver = StaticBrowser.launchBrowser(browser, DempPropertiesClass.readDataFromPropertiesFile("url"));
 		
 		report = new ExtentReports();
 		

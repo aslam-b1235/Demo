@@ -1,0 +1,7 @@
+testUtility\FetchData.class
+testUtility\Screenshot.class
+testPack\DemoDataProvider.class
+testPack\BaseClass.class
+testUtility\StaticBrowser.class
+testPack\LoginTest.class
+testUtility\DempPropertiesClass.class

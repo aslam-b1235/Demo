@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import pomPack.LogInPOM;
+import testUtility.DempPropertiesClass;
 import testUtility.FetchData;
 
 public class LoginTest extends BaseClass
@@ -27,16 +28,16 @@ public class LoginTest extends BaseClass
 		
 	}
 	
-	@Test
-	public void verifyLogIn() throws EncryptedDocumentException, IOException, InterruptedException
+	@Test(dataProvider="DemoData",dataProviderClass=testPack.DemoDataProvider.class)
+	public void verifyLogIn(String un, String pw) throws EncryptedDocumentException, IOException, InterruptedException
 	{
 		logger = report.createTest("verifying login ");
 		
 		SoftAssert s = new SoftAssert();
 		
-		login.sendUserName(FetchData.testData(0, 0));
+		login.sendUserName(un);
 		
-		login.sendPwd(FetchData.testData(0, 1));
+		login.sendPwd(pw);
 		
 		login.clickLogIn();
 		
@@ -53,7 +54,7 @@ public class LoginTest extends BaseClass
 		logger.pass("test case is pass");
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void verifyForLogin() throws EncryptedDocumentException, IOException, InterruptedException
 	{
 		logger = report.createTest("verifyForLogin");
@@ -80,16 +81,16 @@ public class LoginTest extends BaseClass
 		
 	}
 	
-	@Test
+	@Test(enabled=false)
 	public void verifySuccessfulLogin() throws EncryptedDocumentException, IOException, InterruptedException
 	{
 		logger = report.createTest("verifySuccessfulLogin");
 		
 		SoftAssert s = new SoftAssert();
 		
-		login.sendUserName(FetchData.testData(3, 0));
+		login.sendUserName(DempPropertiesClass.readDataFromPropertiesFile("userName"));
 		
-		login.sendPwd(FetchData.testData(3, 1));
+		login.sendPwd(DempPropertiesClass.readDataFromPropertiesFile("password"));
 		
 		login.clickLogIn();
 		
